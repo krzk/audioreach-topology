@@ -79,7 +79,8 @@ DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `TX_CODEC_DMA_TX_
 	LPAIF_INTF_TYPE_RXTX, CODEC_INTF_IDX_TX3, 0, DATA_FORMAT_FIXED_POINT,
 	0x00004019, 0x00004019, 0x00006190)
 
-DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `WSA_CODEC_DMA_TX_0', WSA_CODEC_DMA_TX_0,
+#DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `WSA_CODEC_DMA_TX_0', WSA_CODEC_DMA_TX_0,
+DEVICE_SG_ADD(audioreach/subgraph-device-codec-sp-vi-dma-capture.m4, `WSA_CODEC_DMA_TX_0', WSA_CODEC_DMA_TX_0,
 	`S16_LE', 48000, 48000, 1, 2,
 	LPAIF_INTF_TYPE_WSA, CODEC_INTF_IDX_TX0, 0, DATA_FORMAT_FIXED_POINT,
 	0x00004029, 0x00004029, 0x00006290)

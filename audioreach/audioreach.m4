@@ -107,6 +107,7 @@ define(`MODULE_ID_SMECNS_V2', `0x07001031') dnl
 define(`MODULE_ID_DISPLAY_PORT_SINK', `0x07001069') dnl
 dnl Speaker Protection v5
 define(`MODULE_ID_SPEAKER_PROTECTION', `0x070010E2') dnl
+define(`MODULE_ID_SPEAKER_PROTECTION_VI', `0x070010E3') dnl
 dnl Linux frontend dai ids
 define(`FRONTEND_DAI_MULTIMEDIA1', `0') dnl
 define(`FRONTEND_DAI_MULTIMEDIA2', `1') dnl

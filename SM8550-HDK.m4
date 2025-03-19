@@ -44,7 +44,8 @@ dnl 	format, min-rate, max-rate, min-channels, max-channels,
 dnl	interface-type, interface-index, data-format,
 dnl	sg-iid-start, cont-iid-start, mod-iid-start
 dnl WSA Playback
-DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-playback.m4, `WSA_CODEC_DMA_RX_0', WSA_CODEC_DMA_RX_0,
+#DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-playback.m4, `WSA_CODEC_DMA_RX_0', WSA_CODEC_DMA_RX_0,
+DEVICE_SG_ADD(audioreach/subgraph-device-codec-sp-dma-playback.m4, `WSA_CODEC_DMA_RX_0', WSA_CODEC_DMA_RX_0,
 	`S16_LE', 48000, 48000, 2, 2,
 	LPAIF_INTF_TYPE_WSA, CODEC_INTF_IDX_RX0, 0, DATA_FORMAT_FIXED_POINT,
 	0x00004005, 0x00004005, 0x00006050)
@@ -67,8 +68,9 @@ DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `TX_CODEC_DMA_TX_
 	LPAIF_INTF_TYPE_RXTX, CODEC_INTF_IDX_TX3, 0, DATA_FORMAT_FIXED_POINT,
 	0x00004009, 0x00004009, 0x00006090)
 
-DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `WSA_CODEC_DMA_TX_0', WSA_CODEC_DMA_TX_0,
-	`S16_LE', 48000, 48000, 1, 2,
+#DEVICE_SG_ADD(audioreach/subgraph-device-codec-dma-capture.m4, `WSA_CODEC_DMA_TX_0', WSA_CODEC_DMA_TX_0,
+DEVICE_SG_ADD(audioreach/subgraph-device-codec-sp-vi-dma-capture.m4, `WSA_CODEC_DMA_TX_0', WSA_CODEC_DMA_TX_0,
+	`S32_LE', 48000, 48000, 1, 2,
 	LPAIF_INTF_TYPE_WSA, CODEC_INTF_IDX_TX0, 0, DATA_FORMAT_FIXED_POINT,
 	0x00004019, 0x00004019, 0x00006190)
 

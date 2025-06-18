@@ -3,7 +3,9 @@
 include(`audioreach/audioreach.m4') dnl
 include(`util/pcm.m4') dnl
 include(`audioreach/subgraph.m4') dnl
+include(`audioreach/subgraph-control-link.m4') dnl
 include(`audioreach/container.m4') dnl
+include(`audioreach/control_link.m4') dnl
 include(`audioreach/module_mfc.m4') dnl
 include(`audioreach/module_log.m4') dnl
 include(`audioreach/module_codec_dma.m4') dnl
@@ -46,6 +48,7 @@ define(`LOG_MODULE_IID', MOD_IID_START) dnl
 define(`MFC_MODULE_IID', eval(MOD_IID_START + 1)) dnl
 define(`SP_MODULE_IID', eval(MOD_IID_START + 2)) dnl
 define(`CDC_DMA_MODULE_IID', eval(MOD_IID_START + 3)) dnl
+define(`CONTROL_LINK_IID', eval(MOD_IID_START + 4)) dnl
 define(`SG_INDEX', 1) dnl
 define(`CONTAINER_INDEX', 1) dnl
 define(`MOD_INDEX', 1) dnl
@@ -64,7 +67,12 @@ define(`DEVICE_PLAYBACK_ROUTE',
 `        ]'
 `}')
 
-AR_SUBGRAPH(SG_INDEX, DEVICE_DAI_ID, SG_IID_START, DEVICE_PERF_MODE, DEVICE_DIRECTION, CONT_SENARIO_ID)
+# Depends on SP_VI_MODULE_IID (eval(0x00006190 + 1)) defined in other subgraph
+dnl AR_CONTROL_LINK(index, iid, peer1-iid, peer1-port, peer2-iid, peer2-port, intent0, intent1, intent2, intent3)
+AR_CONTROL_LINK(SG_INDEX, CONTROL_LINK_IID, eval(0x00006190 + 1), 0x80000000, SP_MODULE_IID, 0x80000000, 0x8001204, 0, 0, 0)
+
+AR_SUBGRAPH_CONTROL_LINK(SG_INDEX, DEVICE_DAI_ID, SG_IID_START, DEVICE_PERF_MODE, DEVICE_DIRECTION, CONT_SENARIO_ID)
+
 AR_CONTAINER(CONTAINER_INDEX, CONT_IID_START, CONT_CAP, CONT_STACK_SIZE, CONT_POSITION, DEVICE_DOMAIN_ID)
 AR_MODULE_LOG(MOD_INDEX, SG_INDEX, CONTAINER_INDEX, 		LOG_MODULE_IID,     1, 1, 2, 1, 1, 2, 0x000019ab, 1, 0, MFC_MODULE_IID)
 AR_MODULE_MFC(MOD_INDEX, SG_INDEX, CONTAINER_INDEX, MFC_MODULE_IID, 1, 1, 2, 1, 1, 2, SP_MODULE_IID)
